@@ -13,6 +13,8 @@ base class Dependencies {
   const Dependencies({
     required this.searchRepository,
   });
+
+  /// Репозиторий экрана поиска фильмов
   final ISearchRepository searchRepository;
 }
 

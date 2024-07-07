@@ -4,8 +4,17 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'film.freezed.dart';
 part 'film.g.dart';
 
+/// Представляет данные о фильме.
+
 @freezed
 class FilmData with _$FilmData {
+  /// Создает новый экземпляр [FilmData].
+  ///
+  /// Параметр [docs] указывает список медиа-элементов.
+  /// Параметр [total] указывает общее количество медиа-элементов.
+  /// Параметр [limit] указывает максимальное количество медиа-элементов на странице.
+  /// Параметр [page] указывает номер текущей страницы.
+  /// Параметр [pages] указывает общее количество страниц.
   const factory FilmData({
     @Default(<MediaItem>[]) List<MediaItem> docs,
     @Default(0) int total,
@@ -18,8 +27,10 @@ class FilmData with _$FilmData {
       _$FilmDataFromJson(json);
 }
 
+/// Класс `MediaItem` представляет собой модель для представления информации о фильме/сериале.
 @freezed
 class MediaItem with _$MediaItem {
+  /// Создает новый экземпляр [MediaItem].
   const factory MediaItem({
     @Default(0) int id,
     @Default('') String name,

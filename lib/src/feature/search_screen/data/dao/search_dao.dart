@@ -9,6 +9,10 @@ import 'package:kinopoisk_test/src/feature/search_screen/model/film.dart';
 
 part 'search_dao.g.dart';
 
+/// DAO (Data Access Object) для поиска медиа-элементов.
+///
+/// Этот класс предоставляет методы для получения результатов поиска
+/// и взаимодействия с базой данных.
 @DriftAccessor(
   tables: [
     MediaItemTable,
@@ -23,6 +27,13 @@ class SearchDao extends DatabaseAccessor<AppDatabase>
     implements SearchDataSource {
   SearchDao(super.attachedDatabase);
 
+  /// Получает результаты поиска на основе заданного запроса.
+  ///
+  /// Возвращает [Future], который завершается с объектом [FilmData],
+  /// содержащим результаты поиска.
+  ///
+  /// Выбрасывает [Exception], если при получении результатов
+  /// поиска возникает ошибка.
   @override
   Future<FilmData> getSearchList(String query) async {
     try {
@@ -46,6 +57,7 @@ class SearchDao extends DatabaseAccessor<AppDatabase>
         ],
       )..where(mediaItemTable.name.collate(Collate.noCase).like(query)))
           .get();
+
       // Преобразуем найденные документы и связанные данные в FilmData
       final Map<int, MediaItem> mediaItems = {};
 
@@ -84,7 +96,6 @@ class SearchDao extends DatabaseAccessor<AppDatabase>
           );
         }
       }
-      logger.info(mediaItems.toString());
       return FilmData(docs: mediaItems.values.toList());
     } catch (e) {
       rethrow;

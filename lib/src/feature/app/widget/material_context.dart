@@ -16,18 +16,18 @@ class MaterialContext extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-      // theme: theme.lightTheme,
-      // darkTheme: theme.darkTheme,
-      // themeMode: theme.mode,
-      // localizationsDelegates: Localization.localizationDelegates,
-      // supportedLocales: Localization.supportedLocales,
-      // locale: locale,
-      home: const SearchScreen(),
-      builder: (context, child) => MediaQuery.withClampedTextScaling(
-        key: _globalKey,
-        minScaleFactor: 1.0,
-        maxScaleFactor: 2.0,
-        child: child!,
-      ),
-    );
+        // theme: theme.lightTheme,
+        // darkTheme: theme.darkTheme,
+        // themeMode: theme.mode,
+        // localizationsDelegates: Localization.localizationDelegates,
+        // supportedLocales: Localization.supportedLocales,
+        // locale: locale,
+        home: const SearchScreen(),
+        builder: (context, child) => MediaQuery.withClampedTextScaling(
+          key: _globalKey,
+          minScaleFactor: 1.0,
+          maxScaleFactor: 1.0,
+          child: child!,
+        ),
+      );
 }

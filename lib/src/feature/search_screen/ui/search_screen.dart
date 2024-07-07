@@ -5,7 +5,9 @@ import 'package:kinopoisk_test/src/feature/initialization/widget/dependencies_sc
 import 'package:kinopoisk_test/src/feature/search_screen/bloc/search_bloc.dart';
 import 'package:kinopoisk_test/src/feature/search_screen/ui/widgets/film_list_widget.dart';
 
+/// Экран для поиска фильмов.
 class SearchScreen extends StatefulWidget {
+  /// Конструктор [SearchScreen].
   const SearchScreen({super.key});
 
   @override
@@ -43,6 +45,8 @@ class _SearchScreenState extends State<SearchScreen> {
                     snap: true,
                     floating: true,
                   ),
+
+                  ///TODO: Будет нужно если необходимо добавить логику первоначальной загрузки
                   BlocBuilder<SearchBloc, SearchState>(
                     buildWhen: (previous, current) =>
                         previous.screenStatus != current.screenStatus,

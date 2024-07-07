@@ -4,7 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kinopoisk_test/src/feature/search_screen/bloc/search_bloc.dart';
 
+/// Виджет, отображающий поле ввода поиска.
+///
+/// Этот виджет позволяет пользователю вводить поисковый запрос и запускает
+/// поиск при изменении запроса.
 class SearchInputWidget extends StatefulWidget {
+  /// Конструктор [SearchInputWidget].
   const SearchInputWidget({
     super.key,
   });
@@ -19,7 +24,9 @@ class _SearchInputWidgetState extends State<SearchInputWidget> {
   @override
   void initState() {
     super.initState();
-    _debounce = Timer(const Duration(milliseconds: 500), () {});
+
+    /// Задержка запроса поиска 1 секунда
+    _debounce = Timer(const Duration(seconds: 1), () {});
   }
 
   @override
@@ -32,16 +39,16 @@ class _SearchInputWidgetState extends State<SearchInputWidget> {
           prefixIcon: Icon(Icons.search),
         ),
         keyboardType: TextInputType.text,
-        // onChanged: (value) {
-        //   _debounce.cancel();
-        //   _debounce = Timer(const Duration(milliseconds: 500), () {
-        //     context
-        //         .read<SearchBloc>()
-        //         .add(SearchEvent.searchTypeChanged(value));
-        //   });
-        // },
-        onSubmitted: (value) => context
-            .read<SearchBloc>()
-            .add(SearchEvent.searchTypeChanged(value)),
+        onChanged: (value) {
+          _debounce.cancel();
+          _debounce = Timer(const Duration(seconds: 1), () {
+            context
+                .read<SearchBloc>()
+                .add(SearchEvent.searchTypeChanged(value));
+          });
+        },
+        // onSubmitted: (value) => context
+        //     .read<SearchBloc>()
+        //     .add(SearchEvent.searchTypeChanged(value)),
       );
 }

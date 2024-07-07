@@ -12,9 +12,15 @@ part 'search_bloc.freezed.dart';
 part 'search_event.dart';
 part 'search_state.dart';
 
+/// Этот класс представляет BLoC для экрана поиска.
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
+  /// Репозиторий, используемый для поиска.
   final ISearchRepository searchRepository;
 
+  /// Создает новый экземпляр [SearchBloc].
+  ///
+  /// Параметр [searchRepository] является обязательным и используется
+  ///  для взаимодействия с репозиторием поиска.
   SearchBloc(
     this.searchRepository,
   ) : super(const SearchState()) {
@@ -22,12 +28,17 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     on<_SearchTypeChanged>(_onSearchTypeChanged);
   }
 
+  ///TODO: Добавить логику по необходимости(на данный момент решено не использовать)
   FutureOr<void> _onStarted(_Started event, Emitter<SearchState> emit) async {
     emit(const SearchState(screenStatus: ScreenStatus.loading));
 
     emit(const SearchState(screenStatus: ScreenStatus.success));
   }
 
+  /// Обрабатывает событие [_SearchTypeChanged].
+  ///
+  /// Этот метод вызывается при отправке события [_SearchTypeChanged].
+  /// Он выполняет необходимые действия для обработки изменения типа поиска.
   FutureOr<void> _onSearchTypeChanged(
     _SearchTypeChanged event,
     Emitter<SearchState> emit,
@@ -44,11 +55,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         emit(state.copyWith(searchStatus: ScreenStatus.empty));
         return;
       }
-      logger.info(result.docs.first.toString());
       emit(state.copyWith(mediaItems: result.docs));
       emit(state.copyWith(searchStatus: ScreenStatus.success));
-
-      logger.info(result.toString());
     } catch (e, stackTrace) {
       emit(state.copyWith(searchStatus: ScreenStatus.failure));
       logger.error(
