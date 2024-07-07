@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kinopoisk_test/src/core/utils/enums/screen_status.dart';
-import 'package:kinopoisk_test/src/feature/initialization/model/dependencies.dart';
 import 'package:kinopoisk_test/src/feature/initialization/widget/dependencies_scope.dart';
 import 'package:kinopoisk_test/src/feature/search_screen/bloc/search_bloc.dart';
 import 'package:kinopoisk_test/src/feature/search_screen/ui/widgets/film_list_widget.dart';

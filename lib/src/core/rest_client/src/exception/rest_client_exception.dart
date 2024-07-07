@@ -1,5 +1,5 @@
-import 'package:meta/meta.dart';
 import 'package:kinopoisk_test/src/core/rest_client/rest_client.dart';
+import 'package:meta/meta.dart';
 
 // coverage:ignore-start
 /// {@template rest_client_exception}

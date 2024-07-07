@@ -33,6 +33,6 @@ class SearchDataSourceNetwork implements SearchDataSource {
   @override
   Future<void> insertList(List<MediaItem> mediaItems) {
     throw UnimplementedError(
-        'Метод предназначен исключительно для локального сохранения');
+        'Метод предназначен исключительно для локального сохранения',);
   }
 }

@@ -1,3 +1,4 @@
+import 'package:kinopoisk_test/src/feature/initialization/logic/composition_root.dart';
 import 'package:kinopoisk_test/src/feature/search_screen/data/repository/i_search_repository.dart';
 
 /// {@template dependencies}

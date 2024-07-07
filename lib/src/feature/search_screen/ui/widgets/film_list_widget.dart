@@ -65,8 +65,7 @@ class FilmListWidget extends StatelessWidget {
                         separatorBuilder: (__, _) => const SizedBox(height: 10),
                       );
                   }
-                  ;
-                }),
+                },),
             SliverPadding(
               padding: EdgeInsets.only(
                 bottom: MediaQuery.paddingOf(context).bottom + 10,

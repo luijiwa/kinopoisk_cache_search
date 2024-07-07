@@ -47,7 +47,7 @@ class SearchDao extends DatabaseAccessor<AppDatabase>
       )..where(mediaItemTable.name.collate(Collate.noCase).like(query)))
           .get();
       // Преобразуем найденные документы и связанные данные в FilmData
-      Map<int, MediaItem> mediaItems = {};
+      final Map<int, MediaItem> mediaItems = {};
 
       for (final result in results) {
         final mediaItem = result.readTable(mediaItemTable);
@@ -86,7 +86,7 @@ class SearchDao extends DatabaseAccessor<AppDatabase>
       }
       logger.info(mediaItems.toString());
       return FilmData(docs: mediaItems.values.toList());
-    } catch (e, stackTrace) {
+    } catch (e) {
       rethrow;
     }
   }

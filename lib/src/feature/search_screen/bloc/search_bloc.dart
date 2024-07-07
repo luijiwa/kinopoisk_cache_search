@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 import 'package:kinopoisk_test/src/core/utils/enums/screen_status.dart';
 import 'package:kinopoisk_test/src/core/utils/refined_logger.dart';

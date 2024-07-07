@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kinopoisk_test/src/feature/app/widget/material_context.dart';
+import 'package:kinopoisk_test/src/feature/initialization/logic/composition_root.dart';
 import 'package:kinopoisk_test/src/feature/initialization/model/dependencies.dart';
 import 'package:kinopoisk_test/src/feature/initialization/widget/dependencies_scope.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';

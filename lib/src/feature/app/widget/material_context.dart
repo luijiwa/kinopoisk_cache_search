@@ -15,8 +15,7 @@ class MaterialContext extends StatelessWidget {
   static final _globalKey = GlobalKey();
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  Widget build(BuildContext context) => MaterialApp(
       // theme: theme.lightTheme,
       // darkTheme: theme.darkTheme,
       // themeMode: theme.mode,
@@ -31,5 +30,4 @@ class MaterialContext extends StatelessWidget {
         child: child!,
       ),
     );
-  }
 }
