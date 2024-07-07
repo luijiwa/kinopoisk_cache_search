@@ -1,0 +1,8 @@
+-- _searchMediaItem(:query AS TEXT):
+-- SELECT *
+-- FROM media_item_table
+-- LEFT OUTER JOIN posters_table ON posters_table.doc_id = media_item_table.id
+-- LEFT OUTER JOIN ratings_table ON ratings_table.doc_id = media_item_table.id
+-- LEFT OUTER JOIN genres_table ON genres_table.doc_id = media_item_table.id
+
+-- WHERE LOWER(media_item_table.name) LIKE '%' || :query || '%';

@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:kinopoisk_test/main.dart';
-import 'package:kinopoisk_test/src/feature/search_screen/ui/my_app.dart';
+import 'package:kinopoisk_test/src/feature/search_screen/ui/search_screen.dart';
 
 void main() {
   // testWidgets('Counter increments smoke test', (WidgetTester tester) async {

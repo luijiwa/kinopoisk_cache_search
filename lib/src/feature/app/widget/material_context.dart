@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kinopoisk_test/src/feature/search_screen/ui/my_app.dart';
+import 'package:kinopoisk_test/src/feature/search_screen/ui/search_screen.dart';
 
 /// {@template material_context}
 /// [MaterialContext] is an entry point to the material context.

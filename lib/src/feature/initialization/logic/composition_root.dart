@@ -1,6 +1,8 @@
+import 'package:kinopoisk_test/src/core/database/database.dart';
 import 'package:kinopoisk_test/src/core/rest_client/rest_client.dart';
 import 'package:kinopoisk_test/src/core/utils/refined_logger.dart';
 import 'package:kinopoisk_test/src/feature/initialization/model/dependencies.dart';
+import 'package:kinopoisk_test/src/feature/search_screen/data/dao/search_dao.dart';
 import 'package:kinopoisk_test/src/feature/search_screen/data/data_source/search_data_source_network.dart';
 import 'package:kinopoisk_test/src/feature/search_screen/data/repository/i_search_repository.dart';
 import 'package:kinopoisk_test/src/feature/search_screen/data/repository/search_repository.dart';
@@ -43,8 +45,10 @@ final class CompositionRoot {
   Future<Dependencies> _initDependencies() async {
     final RestClient restClient =
         RestClientHttp(baseUrl: 'https://api.kinopoisk.dev');
+    final AppDatabase appDatabase = AppDatabase();
     final ISearchRepository searchRepository = SearchRepository(
       SearchDataSourceNetwork(restClient),
+      SearchDao(appDatabase),
     );
     return Dependencies(
       searchRepository: searchRepository,

@@ -17,34 +17,21 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SearchEvent {
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_SearchTypeChanged value) searchTypeChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_SearchTypeChanged value)? searchTypeChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_SearchTypeChanged value)? searchTypeChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -105,36 +92,9 @@ class _$StartedImpl implements _Started {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-  }) {
-    return started();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-  }) {
-    return started?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    required TResult orElse(),
-  }) {
-    if (started != null) {
-      return started();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_SearchTypeChanged value) searchTypeChanged,
   }) {
     return started(this);
   }
@@ -143,6 +103,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_SearchTypeChanged value)? searchTypeChanged,
   }) {
     return started?.call(this);
   }
@@ -151,6 +112,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_SearchTypeChanged value)? searchTypeChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -165,8 +127,114 @@ abstract class _Started implements SearchEvent {
 }
 
 /// @nodoc
+abstract class _$$SearchTypeChangedImplCopyWith<$Res> {
+  factory _$$SearchTypeChangedImplCopyWith(_$SearchTypeChangedImpl value,
+          $Res Function(_$SearchTypeChangedImpl) then) =
+      __$$SearchTypeChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String query});
+}
+
+/// @nodoc
+class __$$SearchTypeChangedImplCopyWithImpl<$Res>
+    extends _$SearchEventCopyWithImpl<$Res, _$SearchTypeChangedImpl>
+    implements _$$SearchTypeChangedImplCopyWith<$Res> {
+  __$$SearchTypeChangedImplCopyWithImpl(_$SearchTypeChangedImpl _value,
+      $Res Function(_$SearchTypeChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? query = null,
+  }) {
+    return _then(_$SearchTypeChangedImpl(
+      null == query
+          ? _value.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SearchTypeChangedImpl implements _SearchTypeChanged {
+  const _$SearchTypeChangedImpl(this.query);
+
+  @override
+  final String query;
+
+  @override
+  String toString() {
+    return 'SearchEvent.searchTypeChanged(query: $query)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SearchTypeChangedImpl &&
+            (identical(other.query, query) || other.query == query));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, query);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchTypeChangedImplCopyWith<_$SearchTypeChangedImpl> get copyWith =>
+      __$$SearchTypeChangedImplCopyWithImpl<_$SearchTypeChangedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_SearchTypeChanged value) searchTypeChanged,
+  }) {
+    return searchTypeChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_SearchTypeChanged value)? searchTypeChanged,
+  }) {
+    return searchTypeChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_SearchTypeChanged value)? searchTypeChanged,
+    required TResult orElse(),
+  }) {
+    if (searchTypeChanged != null) {
+      return searchTypeChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SearchTypeChanged implements SearchEvent {
+  const factory _SearchTypeChanged(final String query) =
+      _$SearchTypeChangedImpl;
+
+  String get query;
+  @JsonKey(ignore: true)
+  _$$SearchTypeChangedImplCopyWith<_$SearchTypeChangedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$SearchState {
   ScreenStatus get screenStatus => throw _privateConstructorUsedError;
+  ScreenStatus get searchStatus => throw _privateConstructorUsedError;
+  List<MediaItem> get mediaItems => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SearchStateCopyWith<SearchState> get copyWith =>
@@ -179,7 +247,10 @@ abstract class $SearchStateCopyWith<$Res> {
           SearchState value, $Res Function(SearchState) then) =
       _$SearchStateCopyWithImpl<$Res, SearchState>;
   @useResult
-  $Res call({ScreenStatus screenStatus});
+  $Res call(
+      {ScreenStatus screenStatus,
+      ScreenStatus searchStatus,
+      List<MediaItem> mediaItems});
 }
 
 /// @nodoc
@@ -196,12 +267,22 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
   @override
   $Res call({
     Object? screenStatus = null,
+    Object? searchStatus = null,
+    Object? mediaItems = null,
   }) {
     return _then(_value.copyWith(
       screenStatus: null == screenStatus
           ? _value.screenStatus
           : screenStatus // ignore: cast_nullable_to_non_nullable
               as ScreenStatus,
+      searchStatus: null == searchStatus
+          ? _value.searchStatus
+          : searchStatus // ignore: cast_nullable_to_non_nullable
+              as ScreenStatus,
+      mediaItems: null == mediaItems
+          ? _value.mediaItems
+          : mediaItems // ignore: cast_nullable_to_non_nullable
+              as List<MediaItem>,
     ) as $Val);
   }
 }
@@ -214,7 +295,10 @@ abstract class _$$SearchStateImplCopyWith<$Res>
       __$$SearchStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ScreenStatus screenStatus});
+  $Res call(
+      {ScreenStatus screenStatus,
+      ScreenStatus searchStatus,
+      List<MediaItem> mediaItems});
 }
 
 /// @nodoc
@@ -229,12 +313,22 @@ class __$$SearchStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? screenStatus = null,
+    Object? searchStatus = null,
+    Object? mediaItems = null,
   }) {
     return _then(_$SearchStateImpl(
       screenStatus: null == screenStatus
           ? _value.screenStatus
           : screenStatus // ignore: cast_nullable_to_non_nullable
               as ScreenStatus,
+      searchStatus: null == searchStatus
+          ? _value.searchStatus
+          : searchStatus // ignore: cast_nullable_to_non_nullable
+              as ScreenStatus,
+      mediaItems: null == mediaItems
+          ? _value._mediaItems
+          : mediaItems // ignore: cast_nullable_to_non_nullable
+              as List<MediaItem>,
     ));
   }
 }
@@ -242,15 +336,30 @@ class __$$SearchStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SearchStateImpl implements _SearchState {
-  const _$SearchStateImpl({this.screenStatus = ScreenStatus.initial});
+  const _$SearchStateImpl(
+      {this.screenStatus = ScreenStatus.initial,
+      this.searchStatus = ScreenStatus.initial,
+      final List<MediaItem> mediaItems = const <MediaItem>[]})
+      : _mediaItems = mediaItems;
 
   @override
   @JsonKey()
   final ScreenStatus screenStatus;
+  @override
+  @JsonKey()
+  final ScreenStatus searchStatus;
+  final List<MediaItem> _mediaItems;
+  @override
+  @JsonKey()
+  List<MediaItem> get mediaItems {
+    if (_mediaItems is EqualUnmodifiableListView) return _mediaItems;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_mediaItems);
+  }
 
   @override
   String toString() {
-    return 'SearchState(screenStatus: $screenStatus)';
+    return 'SearchState(screenStatus: $screenStatus, searchStatus: $searchStatus, mediaItems: $mediaItems)';
   }
 
   @override
@@ -259,11 +368,16 @@ class _$SearchStateImpl implements _SearchState {
         (other.runtimeType == runtimeType &&
             other is _$SearchStateImpl &&
             (identical(other.screenStatus, screenStatus) ||
-                other.screenStatus == screenStatus));
+                other.screenStatus == screenStatus) &&
+            (identical(other.searchStatus, searchStatus) ||
+                other.searchStatus == searchStatus) &&
+            const DeepCollectionEquality()
+                .equals(other._mediaItems, _mediaItems));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, screenStatus);
+  int get hashCode => Object.hash(runtimeType, screenStatus, searchStatus,
+      const DeepCollectionEquality().hash(_mediaItems));
 
   @JsonKey(ignore: true)
   @override
@@ -273,11 +387,17 @@ class _$SearchStateImpl implements _SearchState {
 }
 
 abstract class _SearchState implements SearchState {
-  const factory _SearchState({final ScreenStatus screenStatus}) =
-      _$SearchStateImpl;
+  const factory _SearchState(
+      {final ScreenStatus screenStatus,
+      final ScreenStatus searchStatus,
+      final List<MediaItem> mediaItems}) = _$SearchStateImpl;
 
   @override
   ScreenStatus get screenStatus;
+  @override
+  ScreenStatus get searchStatus;
+  @override
+  List<MediaItem> get mediaItems;
   @override
   @JsonKey(ignore: true)
   _$$SearchStateImplCopyWith<_$SearchStateImpl> get copyWith =>
