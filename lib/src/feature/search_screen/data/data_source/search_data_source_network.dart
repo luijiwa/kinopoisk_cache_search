@@ -9,6 +9,7 @@ class SearchDataSourceNetwork implements SearchDataSource {
   @override
   Future<FilmData> getSearchList(String query) async {
     try {
+      logger.info('Поиск в интернете по слову: $query');
       final films = await restClient.get(
         '/v1.4/movie/search',
         queryParams: {

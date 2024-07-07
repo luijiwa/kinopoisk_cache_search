@@ -44,7 +44,7 @@ class SearchDao extends DatabaseAccessor<AppDatabase>
             genresTable.docId.equalsExp(mediaItemTable.id),
           ),
         ],
-      )..where(mediaItemTable.name.collate(Collate.noCase).like('%$query%')))
+      )..where(mediaItemTable.name.collate(Collate.noCase).like(query)))
           .get();
       // Преобразуем найденные документы и связанные данные в FilmData
       Map<int, MediaItem> mediaItems = {};
