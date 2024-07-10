@@ -44,7 +44,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     Emitter<SearchState> emit,
   ) async {
     if (state.searchStatus == ScreenStatus.loading) return;
-    final query = event.query;
+    final query = event.query.trim();
 
     try {
       emit(state.copyWith(searchStatus: ScreenStatus.loading));
