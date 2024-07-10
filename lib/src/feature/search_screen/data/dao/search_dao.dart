@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:drift/drift.dart';
+import 'package:drift/extensions/native.dart';
 import 'package:kinopoisk_test/src/core/database/src/app_database.dart';
 import 'package:kinopoisk_test/src/core/database/src/tables/media_item_table.dart';
 import 'package:kinopoisk_test/src/core/utils/refined_logger.dart';
@@ -56,7 +57,7 @@ class SearchDao extends DatabaseAccessor<AppDatabase>
           ),
         ],
       );
-      selections.where(mediaItemTable.name.regexp(query, caseSensitive: false));
+      selections.where(mediaItemTable.name.containsCase(query));
 
       final results = await (selections..limit(20)).get();
 
