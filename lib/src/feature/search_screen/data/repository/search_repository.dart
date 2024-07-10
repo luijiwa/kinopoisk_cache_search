@@ -33,9 +33,12 @@ final class SearchRepository implements ISearchRepository {
       // Сохраняем результаты внешнего поиска в БД
       unawaited(searchDao.insertList(externalResult.docs));
 
+      logger.info(
+          ' EXTERNAL result for $query from internal search: $externalResult');
+
       return externalResult;
     }
-    logger.error('Result: $internalResult');
+    logger.info('Result for $query from internal search: $internalResult');
 
     return internalResult;
   }

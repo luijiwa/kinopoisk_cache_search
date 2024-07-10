@@ -40,7 +40,7 @@ class SearchDao extends DatabaseAccessor<AppDatabase>
       logger.info(mediaItemTable.name.toString());
 
       // Извлекаем основные данные и связанные данные с помощью JOIN
-      final results = await (select(mediaItemTable).join(
+      final selections = select(mediaItemTable).join(
         [
           leftOuterJoin(
             postersTable,
@@ -55,47 +55,14 @@ class SearchDao extends DatabaseAccessor<AppDatabase>
             genresTable.docId.equalsExp(mediaItemTable.id),
           ),
         ],
-      )..where(mediaItemTable.name.collate(Collate.noCase).like(query)))
-          .get();
+      );
+      selections.where(mediaItemTable.name.regexp(query, caseSensitive: false));
+
+      final results = await (selections..limit(20)).get();
 
       // Преобразуем найденные документы и связанные данные в FilmData
-      final Map<int, MediaItem> mediaItems = {};
-
-      for (final result in results) {
-        final mediaItem = result.readTable(mediaItemTable);
-        final poster = result.readTableOrNull(postersTable);
-        final rating = result.readTableOrNull(ratingsTable);
-        final genre = result.readTableOrNull(genresTable);
-
-        if (!mediaItems.containsKey(mediaItem.id)) {
-          mediaItems[mediaItem.id] = MediaItem(
-            id: mediaItem.id,
-            name: mediaItem.name,
-            alternativeName: mediaItem.alternativeName,
-            type: mediaItem.type,
-            year: mediaItem.year,
-            description: mediaItem.description,
-            poster: poster != null
-                ? Poster(
-                    url: poster.url,
-                    previewUrl: poster.previewUrl,
-                  )
-                : null,
-            rating: rating != null
-                ? Rating(
-                    kp: rating.kp,
-                    imdb: rating.imdb,
-                  )
-                : null,
-            genres: <Genre>[
-              if (genre != null)
-                Genre(
-                  name: genre.name,
-                ),
-            ],
-          );
-        }
-      }
+      final Map<int, MediaItem> mediaItems =
+          _transformResultsToFilmData(results);
       return FilmData(docs: mediaItems.values.toList());
     } catch (e) {
       rethrow;
@@ -133,6 +100,48 @@ class SearchDao extends DatabaseAccessor<AppDatabase>
     } catch (e) {
       rethrow;
     }
+  }
+
+  Map<int, MediaItem> _transformResultsToFilmData(List<TypedResult> results) {
+    // Преобразуем найденные документы и связанные данные в FilmData
+    final Map<int, MediaItem> mediaItems = {};
+
+    for (final result in results) {
+      final mediaItem = result.readTable(mediaItemTable);
+      final poster = result.readTableOrNull(postersTable);
+      final rating = result.readTableOrNull(ratingsTable);
+      final genre = result.readTableOrNull(genresTable);
+
+      if (!mediaItems.containsKey(mediaItem.id)) {
+        mediaItems[mediaItem.id] = MediaItem(
+          id: mediaItem.id,
+          name: mediaItem.name,
+          alternativeName: mediaItem.alternativeName,
+          type: mediaItem.type,
+          year: mediaItem.year,
+          description: mediaItem.description,
+          poster: poster != null
+              ? Poster(
+                  url: poster.url,
+                  previewUrl: poster.previewUrl,
+                )
+              : null,
+          rating: rating != null
+              ? Rating(
+                  kp: rating.kp,
+                  imdb: rating.imdb,
+                )
+              : null,
+          genres: <Genre>[
+            if (genre != null)
+              Genre(
+                name: genre.name,
+              ),
+          ],
+        );
+      }
+    }
+    return mediaItems;
   }
 
   Future<void> _addGenresData(MediaItem mediaItem, Genre genre) async {

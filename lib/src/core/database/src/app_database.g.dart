@@ -123,8 +123,13 @@ class $MediaItemTableTable extends MediaItemTable
 
 class MediaItemTableData extends DataClass
     implements Insertable<MediaItemTableData> {
+  /// Столбец id медиа-элемента.
   final int id;
+
+  /// Столбец названия медиа-элемента.
   final String name;
+
+  /// Столбец названия медиа-элемента.
   final String alternativeName;
   final String type;
   final int year;
@@ -425,6 +430,8 @@ class $PostersTableTable extends PostersTable
 class PostersTableData extends DataClass
     implements Insertable<PostersTableData> {
   final int id;
+
+  /// Столбец id медиа-элемента из таблицы MediaItemTable.
   final int docId;
   final String url;
   final String previewUrl;
@@ -674,6 +681,8 @@ class $RatingsTableTable extends RatingsTable
 class RatingsTableData extends DataClass
     implements Insertable<RatingsTableData> {
   final int id;
+
+  /// Столбец id медиа-элемента из таблицы MediaItemTable.
   final int docId;
   final double kp;
   final double imdb;
@@ -909,6 +918,8 @@ class $GenresTableTable extends GenresTable
 
 class GenresTableData extends DataClass implements Insertable<GenresTableData> {
   final int id;
+
+  /// Столбец id медиа-элемента из таблицы MediaItemTable.
   final int docId;
   final String name;
   const GenresTableData(
